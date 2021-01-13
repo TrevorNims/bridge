@@ -1,10 +1,11 @@
 import pandas as pd
 import sys
 
-def download_data(dataset):
+def download_data(*dataset):
 	url = 'https://data.seattle.gov/api/views/65db-xm6k/rows.csv?accessType=DOWNLOAD'
-	if (dataset=='spokane_street'):
-		url = 'https://data.seattle.gov/api/views/upms-nr8w/rows.csv?accessType=DOWNLOAD'
+	if len(dataset) > 0:
+		if dataset[0] =='spokane_street':
+			url = 'https://data.seattle.gov/api/views/upms-nr8w/rows.csv?accessType=DOWNLOAD'
 	dataframe=pd.read_csv(url, parse_dates=["Date"], infer_datetime_format=True)
 	return dataframe
 
